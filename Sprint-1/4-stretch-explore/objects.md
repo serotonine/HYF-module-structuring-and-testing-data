@@ -14,3 +14,7 @@ Answer the following questions:
 
 What does `console` store?
 What does the syntax `console.log` or `console.assert` mean? In particular, what does the `.` mean?
+- console.log(["message"], value.toString())
+- console.assert(assertion, "message", [optionalParams]);
+- - assertion returns a boolean (false / true). If false the message will be displayed in the console.
+- - E.g. console.assert(5 < 2, "You are really dumb into mathematics");
