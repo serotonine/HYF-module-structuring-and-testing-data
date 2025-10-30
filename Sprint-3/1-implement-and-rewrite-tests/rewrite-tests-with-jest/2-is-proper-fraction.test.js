@@ -7,7 +7,16 @@ test("should return true for a proper fraction", () => {
 });
 
 // Case 2: Identify Improper Fractions:
+test("should return true for an improper fraction", () => {
+  expect(isProperFraction(56, 3)).toEqual(false);
+});
 
 // Case 3: Identify Negative Fractions:
+test("should return true for a negative Fraction", () => {
+  expect(isProperFraction(-26, 3)).toEqual(true);
+});
 
 // Case 4: Identify Equal Numerator and Denominator:
+test("should return false for an equal Numerator and Denominator fraction", () => {
+  expect(isProperFraction(3, 3)).toEqual(false);
+});
