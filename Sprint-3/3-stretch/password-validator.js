@@ -1,6 +1,36 @@
-function passwordValidator(password) {
-    return password.length < 5 ? false : true
-}
+/* 
+Password Validation
 
+Write a program that should check if a password is valid
+and returns a boolean
+
+To be valid, a password must:
+- Have at least 5 characters.
+- Have at least one English uppercase letter (A-Z)
+- Have at least one English lowercase letter (a-z)
+- Have at least one number (0-9)
+- Have at least one of the following non-alphanumeric symbols: ("!", "#", "$", "%", ".", "*", "&")
+- Must not be any previous password in the passwords array. 
+
+You must breakdown this problem in order to solve it. Find one test case first and get that working
+
+/* 
+Passwords examples.  
+Bonjour1! //
+Az3&plus.
+P4ssw.rd*
+p4SSw.66* //
+//
+hello1!
+hello!
+*/
+function passwordValidator(password) {
+  const previousPwd = ["Bonjour1!", "p4SSw.66*"];
+  if (previousPwd.includes(password)) {
+    throw new Error("Password already used.");
+  }
+  const regExp = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!#$%.*&]).{5,}$/;
+  return regExp.test(password);
+}
 
 module.exports = passwordValidator;
