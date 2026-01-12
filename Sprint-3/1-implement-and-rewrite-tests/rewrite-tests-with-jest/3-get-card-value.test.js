@@ -13,6 +13,7 @@ test("Should return the number range (2-10).", () => {
   expect(() => getCardValue("6♣︎").toEqual(6));
   expect(() => getCardValue("4♣︎").toEqual(4));
   expect(() => getCardValue("3♣︎").toEqual(3));
+  expect(() => getCardValue("10♠").toEqual(10));
 });
 // Case 3: Handle Face Cards (J, Q, K):
 test("Should return 1° for Face Cards (J, Q, K).", () => {

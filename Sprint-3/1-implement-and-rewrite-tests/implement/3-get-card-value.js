@@ -8,33 +8,32 @@
 // write one test at a time, and make it pass, build your solution up methodically
 // just make one change at a time -- don't rush -- programmers are deep and careful thinkers.
 
-/* function getCardValue(card) {
-  const rank = card.charAt(0);
-  if (rank === "A") {
-    return 11;
-  }
-} */
 function getCardValue(card) {
-  if(typeof card !== 'string' || card.length > 2 || !["♠", "♣︎", "♦︎","♥"].includes(card.charAt(1)) ){
+  if (
+    typeof card !== "string" ||
+    (card.length > 2 && card.slice(0, -1) !== "10") ||
+    !["♠", "♣︎", "♦︎", "♥"].includes(card.slice(-1))
+  ) {
     throw new Error("Invalid card rank.");
   }
   // Set values to be tested.
-  const rank = card.charAt(0);
+  const rank = card.slice(0, -1);
   const nb = +rank;
   // Numbers range 2-10.
-  if(!isNaN(nb) && (nb >= 2 && nb <=10 ) ){
+  if (!isNaN(nb) && nb >= 2 && nb <= 10) {
     return nb;
   }
   // Ace.
   else if (rank === "A") {
     return 11;
-  // King Queen Valet.
+    // King Queen Valet.
   } else if (["J", "Q", "K"].includes(rank)) {
     return 10;
   }
   // Others.
   throw new Error("Invalid card rank.");
 }
+console.log(getCardValue("10♠"));
 
 // The line below allows us to load the getCardValue function into tests in other files.
 // This will be useful in the "rewrite tests with jest" step.
@@ -72,6 +71,9 @@ assertEquals(fiveofHearts, 5);
 const queenofHearts = getCardValue("Q♥");
 assertEquals(queenofHearts, 10);
 
+const tenofSpades = getCardValue();
+assertEquals(tenofSpades, 10);
+
 // Handle Ace (A):
 // Given a card with a rank of "A",
 // When the function is called with an Ace,
@@ -83,14 +85,11 @@ assertEquals(aceofHeart, 11);
 // Given a card with an invalid rank (neither a number nor a recognized face card),
 // When the function is called with such a card,
 // Then it should throw an error indicating "Invalid card rank."
-try{
+try {
   const error1 = getCardValue("1♥");
-//assertEquals(error1, false);
-const error2 = getCardValue(67);
-//assertEquals(error2, false);
-
-}
-catch(e){
+  //assertEquals(error1, false);
+  const error2 = getCardValue(67);
+  //assertEquals(error2, false);
+} catch (e) {
   assertEquals(e.message, "Invalid card rank.");
 }
-
